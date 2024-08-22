@@ -27,6 +27,7 @@ This is the backend of the project. It provides the APIs and business logic nece
 
 ## Folder Structure
 
+```
 my-project/
 │
 ├── backend/
@@ -52,6 +53,7 @@ my-project/
 │   └── README.md
 │
 └── frontend/
+```
 
 ## Installation
 
