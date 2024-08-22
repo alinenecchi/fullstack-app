@@ -1,7 +1,7 @@
-const express = require('express');
-const connectDB = require('./config/db');
-const productRoutes = require('./routes/productRoutes'); // Import the route
+require("dotenv").config();
 
+const express = require("express");
+const connectDB = require("./config/db");
 const app = express();
 
 connectDB();
@@ -9,10 +9,15 @@ connectDB();
 app.use(express.json());
 
 // Use the product routes under the /api/products path
-app.use('/api/products', productRoutes);
+const productRoutes = require("./routes/productRoutes");
+app.use("/api/products", productRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;

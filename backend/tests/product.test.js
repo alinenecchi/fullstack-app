@@ -1,13 +1,24 @@
-const request = require("supertest");
-const app = require("../src/index"); // Ajuste o caminho conforme necessário
+const request = require('supertest');
+const app = require('../src/index');
 
-describe("POST /api/products/import", () => {
-  it("should import products successfully", async () => {
-    const response = await request(app)
-      .post("/api/products/import")
-      .attach("file", "path/to/your/csvfile.csv");
+describe('Product Routes', () => {
+  let server;
 
-    expect(response.status).toBe(200);
-    expect(response.body.message).toBe("Products imported successfully");
+  beforeAll((done) => {
+    server = app.listen(done);
+  });
+
+  afterAll((done) => {
+    server.close(done);
+  });
+
+  describe('GET /api/products/all', () => {
+    it('should retrieve all products', async () => {
+      const response = await request(app).get('/api/products/all');
+      
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual([{ id: 1, name: 'Test Product' }]);
+    });
   });
 });
+

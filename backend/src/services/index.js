@@ -1,6 +1,6 @@
 const Product = require('../models/product');
 const fs = require('fs');
-const csv = require('csv-parser'); // Certifique-se de ter essa biblioteca instalada
+const csv = require('csv-parser');
 
 const readCSV = (filePath) => {
   return new Promise((resolve, reject) => {
@@ -14,11 +14,9 @@ const readCSV = (filePath) => {
 };
 
 const transformData = (data) => {
-  // Adapte a transformação dos dados conforme necessário
   return data.map(item => ({
     name: item.name,
     price: parseFloat(item.price),
-    // Adicione outros campos conforme necessário
   }));
 };
 

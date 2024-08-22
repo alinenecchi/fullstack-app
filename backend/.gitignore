@@ -1,15 +1,16 @@
 # Node modules
 node_modules/
 
-# Arquivos de log
+# Log files
 *.log
 
-# Arquivos temporários
+# Temporary files
 *.tmp
 *.swp
 
-# Arquivo de configuração do ambiente
+# Environment configuration file
 .env
 
-# Diretório de build (se estiver usando TypeScript ou ferramentas similares)
+# Build directory (if using TypeScript or similar tools)
 dist/
+
