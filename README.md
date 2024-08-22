@@ -15,6 +15,7 @@ Each part has its own set of technologies and configurations. The following sect
 
 ## Folder Structure
 
+```
 my-project/
 │
 ├── backend/
@@ -30,6 +31,7 @@ my-project/
     ├── .gitignore           # Git ignore file for the frontend
     ├── package.json         # Frontend dependencies and scripts
     └── README.md            # Documentation for the frontend
+```
 
 ## Getting Started
 
