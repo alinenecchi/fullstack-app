@@ -7,7 +7,9 @@ const app = express();
 
 connectDB();
 
-app.use(cors(express.json()));
+app.use(cors());
+
+app.use(express.json());
 
 // Use the product routes under the /api/products path
 const productRoutes = require("./routes/productRoutes");
