@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
 
     // Save the product to the database
     const savedProduct = await newProduct.save();
-    
+    console.log("Saved product:", savedProduct);
     // Respond with the saved product and a success message
     res.status(201).json({
       message: `Product named "${savedProduct.name}" was successfully added.`,
@@ -104,5 +104,29 @@ router.put('/:id', async (req, res) => {
     });
   }
 });
+
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Find and delete the product by ID
+    const deletedProduct = await Product.findOneAndDelete({ id });
+
+    if (deletedProduct) {
+      // Respond with success message and deleted product
+      res.json({ message: "Product deleted successfully", deletedProduct });
+    } else {
+      // Respond with error if
+      // Respond with an error if the product is not found
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    // Handle errors
+    res
+      .status(500)
+      .json({ message: "Error deleting product", error: error.message });
+  }
+});
+
 
 module.exports = router;
