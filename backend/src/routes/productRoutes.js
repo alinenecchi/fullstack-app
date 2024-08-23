@@ -38,26 +38,21 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
-  const { image, name, categories, price, brand } = req.body;
+router.post('/', async (req, res) => {
+  const { id, image, name, categories, price, brand } = req.body;
 
   try {
-    // Validate request data
-    if (!image || !name || !categories || !price || !brand) {
+    // Check if a product with the same ID already exists
+    const existingProduct = await Product.findOne({ id });
+    if (existingProduct) {
       return res.status(400).json({
-        message: "Validation Error",
-        errors: {
-          image: !image ? "Image URL is required" : undefined,
-          name: !name ? "Name is required" : undefined,
-          categories: !categories ? "Categories are required" : undefined,
-          price: !price ? "Price is required" : undefined,
-          brand: !brand ? "Brand is required" : undefined,
-        },
+        message: `Product with ID ${id} already exists.`,
       });
     }
 
     // Create a new product instance
     const newProduct = new Product({
+      id,
       image,
       name,
       categories,
@@ -67,32 +62,18 @@ router.post("/", async (req, res) => {
 
     // Save the product to the database
     const savedProduct = await newProduct.save();
-
-    // Respond with a success message and the saved product details
+    
+    // Respond with the saved product and a success message
     res.status(201).json({
       message: `Product named "${savedProduct.name}" was successfully added.`,
       product: savedProduct,
     });
   } catch (error) {
     // Handle errors
-    console.error("Error adding product:", error);
-
-    if (error.name === "ValidationError") {
-      res.status(400).json({
-        message: "Validation Error",
-        details: error.errors,
-      });
-    } else if (error.code && error.code === 11000) {
-      res.status(409).json({
-        message: "Duplicate Error",
-        details: "A product with this ID already exists.",
-      });
-    } else {
-      res.status(500).json({
-        message: "Internal Server Error",
-        details: error.message,
-      });
-    }
+    res.status(500).json({
+      message: 'Error adding product',
+      error: error.message,
+    });
   }
 });
 
