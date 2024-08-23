@@ -1,22 +1,6 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ],
-  "parser": "@babel/eslint-parser",
-  "parserOptions": {
-    "requireConfigFile": false,
-    "babelOptions": {
-      "presets": ["@babel/preset-react"]
-    }
-  },
+  "extends": "next/core-web-vitals",
   "rules": {
-    // Adicione regras personalizadas aqui
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
+    // suas regras personalizadas aqui
   }
 }
