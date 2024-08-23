@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const apiUrl = `${process.env.API_URL}/all`;
+    const apiUrl = `${process.env.API_URL_ALL}`;
 
     if (!apiUrl) {
       throw new Error("API URL is not defined");
