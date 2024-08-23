@@ -77,4 +77,32 @@ router.post('/', async (req, res) => {
   }
 });
 
+
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { image, name, categories, price, brand } = req.body;
+
+  try {
+    const updatedProduct = await Product.findOneAndUpdate(
+      { id },
+      { image, name, categories, price, brand },
+      { new: true, runValidators: true }
+    );
+
+    if (updatedProduct) {
+      res.json({
+        message: `Product named "${updatedProduct.name}" was successfully updated.`,
+        product: updatedProduct,
+      });
+    } else {
+      res.status(404).json({ message: `Product with ID ${id} not found.` });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error updating product',
+      error: error.message,
+    });
+  }
+});
+
 module.exports = router;
