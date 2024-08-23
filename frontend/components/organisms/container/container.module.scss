@@ -1,20 +1,18 @@
-@import 'utils/styles/_colors';
-@import 'utils/styles/_mixins';
+@import "utils/styles/_colors";
+@import "utils/styles/_mixins";
 
 .organism__container {
-    position: relative;
-    min-height: 30rem;
-    height: auto;
+  position: relative;
+  min-height: 30rem;
+  height: auto;
 
-    &[data-style="light"] {
-        color: black;
-    }
+  &[data-style="light"] {
+    color: black;
+  }
 
   /******************************************
    *      RESPONSIVITY (media queries)      *
    ******************************************/
-    @include gt-phone {
-
-    }
-   
+  @include gt-phone {
+  }
 }

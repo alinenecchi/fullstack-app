@@ -1,38 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import css from "./product.module.scss";
-import Container from "../../components/organisms/container";
+import Section from "components/atoms/section";
+import Button from "components/atoms/button";
+import Title from "components/atoms/title";
 
-const ProductPage = () => {
+const ProductPage = ({ product }) => {
   const router = useRouter();
-  const { id } = router.query;
-  const [product, setProduct] = useState({
-    _id: "66c67feb78c88f89d93654c4",
-    id: 70709795,
-    image: "https://savegnago.vteximg.com.br/arquivos/ids/293238_2",
-    name: "Borracha Escolar Faber Castell Super Soft",
-    categories: "Bazar E Utilidades",
-    price: 5.39,
-    brand: "Faber Castell",
-    __v: 0,
-  });
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <Container className={css.productPage}>
+    <Section className={css["product-page"]}>
+      <Title level={1} className={css["product-title"]}>
+        {product.name}
+      </Title>
       <img
         src={product.image}
         alt={product.name}
-        className={css.productImage}
+        className={css["product-image"]}
       />
-      <h1>{product.name}</h1>
-      <p>Price: ${product.price}</p>
-      <p>Brand: {product.brand}</p>
-      <p>Category: {product.category}</p>
-      <button onClick={() => router.back()} className={css.backButton}>
+      <p className={css["product-price"]}>Price: ${product.price}</p>
+      <p className={css["product-brand"]}>Brand: {product.brand}</p>
+      <p className={css["product-category"]}>Category: {product.categories}</p>
+
+      <Button onClick={() => router.back()} className={css["back-button"]}>
         Go Back
-      </button>
-    </Container>
+      </Button>
+    </Section>
   );
 };
+
+// Fetching the product data on the server side using your API route
+export async function getServerSideProps(context) {
+  const { id } = context.params;
+
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/getProductId?id=${id}`
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch");
+    }
+
+    const product = await res.json();
+
+    return {
+      props: {
+        product,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching product data:", error);
+    return {
+      notFound: true,
+    };
+  }
+}
 
 export default ProductPage;

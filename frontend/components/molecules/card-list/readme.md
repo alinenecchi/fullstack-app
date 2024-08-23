@@ -1,22 +1,24 @@
-## atom/MoveButton
+## molecule/CardList
 
-Button used for moving carousels
+A card list component
 
 ### Importing it
 
-You can import the component by using:
+To import the component, use the collowing:
 
 ```js
-import MoveButton from "components/atom/move-button";
+
+import CardList from "components/molecule/card-list";
+
 ```
 
 ### Using it
 
 To use it, after importing the component, you can integrate it using the following structure:
 
-```js
+```jsx
 
 // TODO: add props definitions and usages here, for a sample
-<MoveButton ></MoveButton>
+<CardList ></CardList>
 
 ```

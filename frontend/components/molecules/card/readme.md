@@ -1,22 +1,24 @@
-## atom/Image
+## molecule/Card
 
-<!-- TODO: add a description here! -->
+A card component
 
 ### Importing it
 
-You can import the component by using:
+To import the component, use the collowing:
 
 ```js
-import Image from "components/atom/image";
+
+import Card from "components/molecule/card";
+
 ```
 
 ### Using it
 
 To use it, after importing the component, you can integrate it using the following structure:
 
-```js
+```jsx
 
 // TODO: add props definitions and usages here, for a sample
-<Image ></Image>
+<Card ></Card>
 
 ```

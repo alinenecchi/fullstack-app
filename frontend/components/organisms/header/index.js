@@ -2,7 +2,7 @@ import React from "react";
 import Section from "components/atoms/section";
 import MainNavigation from "components/molecules/navbar";
 
-import css from "./styles.module.scss";
+import css from "./header.module.scss";
 
 /**
  * Organism Header
