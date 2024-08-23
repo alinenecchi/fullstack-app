@@ -1,5 +1,6 @@
-@import 'utils/styles/_colors';
-@import 'utils/styles/_mixins';
+@import "utils/styles/_colors";
+@import "utils/styles/_mixins";
+@import "utils/styles/_sizes";
 
 .page__404-container {
   display: flex;
@@ -9,7 +10,7 @@
 
   padding-block: $s-xl;
 
-   @include gt-phone {
+  @include gt-phone {
     padding-block: $s-xxl;
   }
 }
