@@ -1,0 +1,15 @@
+@import 'utils/styles/_colors';
+@import 'utils/styles/_mixins';
+
+.page__404-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-block: $s-xl;
+
+   @include gt-phone {
+    padding-block: $s-xxl;
+  }
+}
