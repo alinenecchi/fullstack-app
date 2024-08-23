@@ -10,6 +10,11 @@ module.exports = {
   },
   env: {
     API_URL: process.env.API_URL,
-    API_URL_ALL: process.env.API_URL_ALL
+    API_URL_ALL: process.env.API_URL_ALL,
+  },
+  i18n: {
+    locales: ["pt-BR", "en", "es", "jp"],
+    defaultLocale: "pt-BR",
+    localeDetection: true,
   },
 };
