@@ -1,3 +1,0 @@
-# FRONTEND
-🚧  Projeto 🚀 em desenvolvimento...  🚧
-

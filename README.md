@@ -19,23 +19,17 @@ Each part has its own set of technologies and configurations. The following sect
 my-project/
 │
 ├── backend/
-│   ├── src/                 # Backend source code
-│   ├── .env                 # Environment variables for the backend
-│   ├── .gitignore           # Git ignore file for the backend
-│   ├── package.json         # Backend dependencies and scripts
-│   └── README.md            # Documentation for the backend
-│
-└── frontend/
-    ├── src/                 # Frontend source code
-    ├── .env                 # Environment variables for the frontend
-    ├── .gitignore           # Git ignore file for the frontend
-    ├── package.json         # Frontend dependencies and scripts
-    └── README.md            # Documentation for the frontend
+   ├── src/                 # Backend source code
+   ├── .env                 # Environment variables for the backend
+   ├── .gitignore           # Git ignore file for the backend
+   ├── package.json         # Backend dependencies and scripts
+   └── README.md            # Documentation for the backend
+
 ```
 
 ## Getting Started
 
-To get started with the project, follow the instructions in the `README.md` files located in the `backend` and `frontend` directories. Each file contains specific information on how to set up and run that part of the project.
+To get started with the project, follow the instructions in the `README.md` files located in the `backend` directorie. Each file contains specific information on how to set up and run that part of the project.
 
 
 
