@@ -14,11 +14,11 @@ function Card(props) {
 
   return (
     <div className={`${css['card']} ${className}`}>
-      <img src={data.image} alt={data.name} className={css['image']} />
+      <img src={data.image} alt={data?.name} className={css['image']} />
       <div className={css['details']}>
-        <h3 className={css['name']}>{data.name}</h3>
-        <p className={css['description']}>{data.description}</p>
-        <p className={css['price']}>${data.price.toFixed(2)}</p>
+        <h3 className={css['name']}>{data?.name}</h3>
+        <p className={css['description']}>{data?.description}</p>
+        <p className={css['price']}>${data?.price?.toFixed(2)}</p>
         <button onClick={handleButtonClick} className={css['button']}>
           Ver Detalhes
         </button>

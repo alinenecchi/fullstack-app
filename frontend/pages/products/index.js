@@ -12,8 +12,6 @@ export async function getStaticProps() {
       throw new Error("Failed to fetch products");
     }
 
-    console.log(process.env.NEXT_PUBLIC_API_URL);
-
     const products = await response.json();
 
     return {
