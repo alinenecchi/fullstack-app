@@ -12,6 +12,11 @@ const ProductPage = ({ product }) => {
     return <div>Loading...</div>;
   }
 
+  if (!product || Object.keys(product).length === 0) {
+    return <div>Product not found.</div>;
+  }
+
+
   return (
     <Section className={css["product-page"]}>
       <Title level={1} className={css["product-title"]}>
@@ -55,7 +60,7 @@ export async function getServerSideProps(context) {
   } catch (error) {
     console.error("Error fetching product data:", error);
     return {
-      props: { products: [] },
+      props: { product: {} }
     };
   }
 }

@@ -20,9 +20,6 @@ function Navbar(props) {
   const pages = [
     { href: "/", label: "Home" },
     { href: "/products", label: "Products" },
-    { href: "/about", label: "About Us" },
-    { href: "/services", label: "Services" },
-    { href: "/contact", label: "Contact" },
   ];
 
   return (
