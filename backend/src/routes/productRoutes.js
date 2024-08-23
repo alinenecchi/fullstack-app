@@ -38,7 +38,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   const { id, image, name, categories, price, brand } = req.body;
 
   try {
@@ -62,7 +62,6 @@ router.post('/', async (req, res) => {
 
     // Save the product to the database
     const savedProduct = await newProduct.save();
-    console.log("Saved product:", savedProduct);
     // Respond with the saved product and a success message
     res.status(201).json({
       message: `Product named "${savedProduct.name}" was successfully added.`,
@@ -71,20 +70,19 @@ router.post('/', async (req, res) => {
   } catch (error) {
     // Handle errors
     res.status(500).json({
-      message: 'Error adding product',
+      message: "Error adding product",
       error: error.message,
     });
   }
 });
 
-
-router.put('/:id', async (req, res) => {
+router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { image, name, categories, price, brand } = req.body;
 
   try {
     const updatedProduct = await Product.findOneAndUpdate(
-      { id },
+      { _id: id },
       { image, name, categories, price, brand },
       { new: true, runValidators: true }
     );
@@ -99,7 +97,7 @@ router.put('/:id', async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: 'Error updating product',
+      message: "Error updating product",
       error: error.message,
     });
   }
@@ -127,6 +125,5 @@ router.delete("/:id", async (req, res) => {
       .json({ message: "Error deleting product", error: error.message });
   }
 });
-
 
 module.exports = router;
