@@ -3,45 +3,51 @@ import Section from "components/atoms/section";
 import css from "./home.module.scss";
 import Card from "components/molecules/card";
 
-export async function getStaticProps() {
-  try {
-    const apiUrl = `${process.env.API_URL}/all`;
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error("Failed to fetch products");
-    }
+// export async function getStaticProps() {
+//   try {
+//     const apiUrl = `${process.env.API_URL}/all`;
+//     const response = await fetch(apiUrl);
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch products");
+//     }
 
-    const products = await response.json();
+//     const products = await response.json();
 
-    return {
-      props: { products },
-      revalidate: 60,
-    };
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    return {
-      props: { products: [] },
-    };
-  }
-}
+//     return {
+//       props: { products },
+//       revalidate: 60,
+//     };
+//   } catch (error) {
+//     console.error("Error fetching products:", error);
+//     return {
+//       props: { products: [] },
+//     };
+//   }
+// }
 
-function Home({ products, ...props }) {
-  const { className = "" } = props;
-  const [featuredIndex, setFeaturedIndex] = useState(0);
+function Home() {
 
-  useEffect(() => {
-    if (products.length === 0) return;
-    const interval = setInterval(() => {
-      setFeaturedIndex((prevIndex) => (prevIndex + 1) % products.length);
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [products]);
+  // { products, ...props }
+  // const { className = "" } = props;
+  // const [featuredIndex, setFeaturedIndex] = useState(0);
 
-  const featuredProduct = products.length > 0 ? products[featuredIndex] : null;
+  // useEffect(() => {
+  //   if (products.length === 0) return;
+  //   const interval = setInterval(() => {
+  //     setFeaturedIndex((prevIndex) => (prevIndex + 1) % products.length);
+  //   }, 10000);
+  //   return () => clearInterval(interval);
+  // }, [products]);
+
+  // const featuredProduct = products.length > 0 ? products[featuredIndex] : null;
 
   return (
     <Section>
-      <div className={`${css["container"]} ${className}`}>
+       <div>
+      <h1>Welcome to My Website</h1>
+      <p>This is the homepage.</p>
+    </div>
+      {/* <div className={`${css["container"]} ${className}`}>
         <header className={css["header"]}>
           <h1>Bem-vindo ao Nosso Site</h1>
           <p>Explore nossos produtos e soluções inovadoras.</p>
@@ -69,7 +75,7 @@ function Home({ products, ...props }) {
             reservados.
           </p>
         </footer>
-      </div>
+      </div> */}
     </Section>
   );
 }
