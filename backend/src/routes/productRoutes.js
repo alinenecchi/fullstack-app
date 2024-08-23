@@ -81,11 +81,8 @@ router.put('/:id', async (req, res) => {
   const { image, name, categories, price, brand } = req.body;
 
   try {
-    // Converter ID para ObjectId
-    const objectId = mongoose.Types.ObjectId(id);
-
-    const updatedProduct = await Product.findByIdAndUpdate(
-      objectId,
+    const updatedProduct = await Product.findOneAndUpdate(
+      { id: parseInt(id) }, // Buscar pelo campo id numérico
       { image, name, categories, price, brand },
       { new: true, runValidators: true }
     );
