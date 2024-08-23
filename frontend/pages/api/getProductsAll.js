@@ -9,13 +9,18 @@ export default async function handler(req, res) {
 
   try {
     const apiUrl = `${process.env.API_URL}/all`;
+
+    if (!apiUrl) {
+      throw new Error("API URL is not defined");
+    }
+
     const response = await fetch(apiUrl);
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
 
-    console.log(11,response);
+    console.log(11, response);
 
     const products = await response.json();
     return res.status(200).json(products);

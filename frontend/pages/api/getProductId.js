@@ -12,6 +12,11 @@ export default async function handler(req, res) {
 
   try {
     const apiUrl = `${process.env.API_URL}/${id}`;
+
+    if (!apiUrl) {
+      throw new Error("API URL is not defined");
+    }
+
     const response = await fetch(apiUrl);
 
     if (!response.ok) {
