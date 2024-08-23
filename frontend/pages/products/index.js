@@ -2,14 +2,12 @@ import React from "react";
 import CardList from "../../components/molecules/card-list";
 import Section from "components/atoms/section";
 
-
 import css from "./product.module.scss";
 
 export async function getStaticProps() {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/getProductsAll`
-    );
+    const apiUrl = `${process.env.API_URL}/all`;
+    const response = await fetch(apiUrl);
     if (!response.ok) {
       throw new Error("Failed to fetch products");
     }

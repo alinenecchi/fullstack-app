@@ -38,12 +38,10 @@ export async function getServerSideProps(context) {
   const { id } = context.params;
 
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/getProductId?id=${id}`
-    );
+    const res = await fetch(`${process.env.API_URL}/${id}`);
 
     if (!res.ok) {
-      throw new Error("Failed to fetch");
+      throw new Error(`Failed to fetch products: ${res.statusText}`);
     }
 
     const product = await res.json();
