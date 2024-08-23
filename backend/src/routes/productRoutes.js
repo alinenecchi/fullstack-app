@@ -76,13 +76,16 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { image, name, categories, price, brand } = req.body;
 
   try {
-    const updatedProduct = await Product.findOneAndUpdate(
-      { _id: id },
+    // Converter ID para ObjectId
+    const objectId = mongoose.Types.ObjectId(id);
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+      objectId,
       { image, name, categories, price, brand },
       { new: true, runValidators: true }
     );
@@ -97,7 +100,7 @@ router.put("/:id", async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: "Error updating product",
+      message: 'Error updating product',
       error: error.message,
     });
   }
