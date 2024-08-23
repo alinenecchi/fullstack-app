@@ -1,0 +1,105 @@
+@import "utils/styles/_colors";
+@import "utils/styles/_mixins";
+@import "utils/styles/_sizes";
+
+.link-label {
+  display: inline-flex;
+  align-items: center;
+  gap: $s-zs;
+
+  border: none;
+
+  font-size: $text-size-default;
+  line-height: $text-line-height-medium;
+  text-decoration: underline;
+
+  transition: color ease $basic-transition;
+
+  /* SIZE VARIATIONS
+  ========================================================================== */
+  &[data-size="small"] {
+    font-size: $text-size-xtiny;
+    line-height: $text-line-height-default;
+  }
+
+  &[data-size="medium"] {
+    font-size: $text-size-tiny;
+    line-height: $text-line-height-small;
+  }
+
+  &[data-size="large"] {
+    text-transform: uppercase;
+  }
+
+  /* ARROW POSITIONS
+  ========================================================================== */
+  &[data-arrow-position="down"] {
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+
+  &[data-arrow-position="up"] {
+    svg {
+      transform: rotate(270deg);
+    }
+  }
+
+  &[data-arrow-position="left"] {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &[data-invert="true"] {
+    .arrow-icon {
+      order: 1;
+    }
+    .children-container {
+      order: 2;
+    }
+  }
+
+  .children-container {
+    color: currentColor;
+  }
+
+  /* STATE
+  ========================================================================== */
+  &[disabled] {
+    color: $c-gray-4;
+
+    pointer-events: none;
+  }
+
+  &:hover,
+  &:focus {
+    color: $primary-red;
+
+    transition: color ease $basic-transition;
+
+    &:not([data-arrow-position]) {
+      svg {
+        transform: translateX(0.4rem);
+        transition: transform ease $basic-transition;
+      }
+    }
+  }
+
+  &[data-remove-underline] {
+    text-decoration: none;
+  }
+
+  /* SVG ICON
+  ========================================================================== */
+  //When we have a dark background wrapper, we need to ensure that the color text will prevail
+  //over the color from "wrapper.scss", hence, all this "currentColor" values.
+  svg {
+    color: currentColor !important;
+    transition: transform ease $basic-transition;
+    path {
+      stroke: currentColor;
+      color: currentColor !important;
+    }
+  }
+}
