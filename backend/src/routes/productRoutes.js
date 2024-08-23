@@ -42,7 +42,20 @@ router.post("/", async (req, res) => {
   const { id, image, name, categories, price, brand } = req.body;
 
   try {
-    // Create a new product instance
+    if (!id || !image || !name || !categories || !price || !brand) {
+      return res.status(400).json({ 
+        message: "Validation Error", 
+        errors: {
+          image: !image ? "Image URL is required" : undefined,
+          name: !name ? "Name is required" : undefined,
+          categories: !categories ? "Categories are required" : undefined,
+          price: !price ? "Price is required" : undefined,
+          brand: !brand ? "Brand is required" : undefined
+        }
+      });
+    }
+
+  try {
     const newProduct = new Product({
       id,
       image,
@@ -57,7 +70,7 @@ router.post("/", async (req, res) => {
 
     // Respond with the saved product
     res.status(201).json({
-      message: `Product with ID ${savedProduct.id} named "${savedProduct.name}" was successfully added.`,
+      message: `Product named "${savedProduct.name}" was successfully added.`,
       product: savedProduct,
     });
   } catch (error) {
