@@ -56,7 +56,10 @@ router.post("/", async (req, res) => {
     const savedProduct = await newProduct.save();
 
     // Respond with the saved product
-    res.status(201).json(savedProduct);
+    res.status(201).json({
+      message: `Product with ID ${savedProduct.id} named "${savedProduct.name}" was successfully added.`,
+      product: savedProduct,
+    });
   } catch (error) {
     // Handle errors
     res
